@@ -1,0 +1,23 @@
+{
+  "name": "untitled-surak-project",
+  "authors": [
+    "awesome author"
+  ],
+  "description": "the world is your canvas!",
+  "main": "",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
+    "angular-sanitize": "^1.5.5",
+    "angular-material": "^1.1.0"
+  },
+  "license": "",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

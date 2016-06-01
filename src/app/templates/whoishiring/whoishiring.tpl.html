@@ -1,0 +1,24 @@
+<div layout="column" layout-align="center center">
+  <h2>WhoIsHiring's Job Postings:</h2>
+
+  <div class="whois-controls">
+    <input type="text" ng-model="storyId" />
+    <a href class="btn" ng-click="loadStory()">Get Story</a>
+    <p>
+      Search Queries:
+      <p ng-repeat="searchQuery in searchQueries track by $index">
+        <input type="text" ng-model="searchQueries[$index]" />
+      </p>
+
+      <a href class="btn" ng-click="searchQueries.push('')">Add query</a>
+
+      {{searchQueries}}
+    </p>
+  </div>
+
+  <div class="postings">
+    <div class="posting" ng-repeat="posting in visiblePostings() | filterByArray: searchQueries">
+      <div ng-bind-html="posting.htmlText"></div>
+    </div>
+  </div>
+</div>
