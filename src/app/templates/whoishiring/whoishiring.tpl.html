@@ -1,24 +1,39 @@
-<div layout="column" layout-align="center center">
-  <h2>WhoIsHiring's Job Postings:</h2>
+<md-toolbar>
+    <h2>WhoIsHiring's Job Postings:</h2>
+</md-toolbar>
+<div flex layout="row">
+  <md-sidenav flex="15" md-is-locked-open="true" class="md-whiteframe-z1">
 
-  <div class="whois-controls">
-    <input type="text" ng-model="storyId" />
-    <a href class="btn" ng-click="loadStory()">Get Story</a>
-    <p>
-      Search Queries:
-      <p ng-repeat="searchQuery in searchQueries track by $index">
-        <input type="text" ng-model="searchQueries[$index]" />
-      </p>
+        <div class="whois-controls" layout="column" layout-align="start start" flex>
 
-      <a href class="btn" ng-click="searchQueries.push('')">Add query</a>
+          <div class="padding-bottom" layout="column" layout-align="center center">
+            <h3>Story</h3>
+            <md-input-container layout-align="center center">
+              <label>Story ID</label>
+              <input type="text" ng-model="storyId" ng-model="searchQueries[$index]">
+            </md-input-container>
+            <md-button ng-click="loadStory()">Get Story</md-button>
+            <p ng-show="postings.length>0">
+              {{postings.length}} Postings loaded
+            </p>
+          </div>
 
-      {{searchQueries}}
-    </p>
-  </div>
+          <div class="padding-bottom" layout="column" layout-align="center center">
+            <h3>Search Queries</h3>
+            <md-input-container ng-repeat="searchQuery in searchQueries track by $index" layout-align="center center">
+              <label>Search Term</label>
+              <input type="text" ng-model="searchQueries[$index]" ng-model="searchQueries[$index]">
+            </md-input-container>
 
-  <div class="postings">
-    <div class="posting" ng-repeat="posting in visiblePostings() | filterByArray: searchQueries">
-      <div ng-bind-html="posting.htmlText"></div>
+            <md-button ng-click="searchQueries.push('')">Add query</md-button>
+            <md-button ng-click="filterPostings()">Apply Filters</md-button>
+
+        </div>
+
+  </md-sidenav>
+    <div class="postings">
+      <div class="posting" ng-repeat="posting in filteredPostings">
+        <div ng-bind-html="posting.htmlText"></div>
+      </div>
     </div>
-  </div>
 </div>

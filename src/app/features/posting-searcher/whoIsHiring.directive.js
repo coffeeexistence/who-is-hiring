@@ -1,14 +1,15 @@
 function whoIsHiring(HNApi) {
 	return {
 		restrict: 'E',
-		controller: ['$scope', '$sce',
-		function($scope, $sce){
+		controller: ['$scope', '$sce', '$filter',
+		function($scope, $sce, $filter){
 			var ctrl =  this;
 
 			$scope.postings = [];
+			$scope.filteredPostings = [];
 
-			$scope.visiblePostings = function(){
-				return $scope.postings.slice(0, 100);
+			$scope.filterPostings = function(){
+				$scope.filteredPostings = $filter('filterByArray')($scope.postings, $scope.searchQueries);
 			};
 
 			$scope.searchQueries = [""];

@@ -1,9 +1,14 @@
 html {
   font-family: Roboto,"Helvetica Neue",sans-serif;
+
 }
 
-who-is-hiring {
-  margin: 2em;
+body {
+  min-width: 100%;
+}
+
+.padding-bottom {
+  padding-bottom: 4em;
 }
 
 .whois-controls {
@@ -11,9 +16,18 @@ who-is-hiring {
   margin-bottom: 1em;
 }
 
+.whoishiring {
+
+}
+
 .posting {
   margin-top: 4em;
   margin-bottom: 4em;
   padding: 1em 1em 1em 1em;
   background-color: #EDEDED;
+}
+
+.postings {
+  flex:1 1 100%;
+  height:100%;
 }
