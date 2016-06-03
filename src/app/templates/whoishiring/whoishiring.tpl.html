@@ -1,18 +1,20 @@
 <md-toolbar>
-    <h2>WhoIsHiring's Job Postings:</h2>
+    <h2 class="thin">WhoIsHiring's Job Postings:</h2>
 </md-toolbar>
 <div flex layout="row">
-  <md-sidenav flex="20" flex-md="30" md-is-locked-open="true" class="md-whiteframe-z1">
-
-        <div class="whois-controls" layout="column" layout-align="start start" flex>
+  <md-sidenav md-component-id="left" class="md-whiteframe-z1" md-is-locked-open="$mdMedia('min-width: 500px')">
+    <md-content>
+        <div class="whois-controls" layout="column" layout-align="center center" flex>
 
           <div class="padding-bottom" layout="column" layout-align="center center">
-            <h3>Story</h3>
-            <md-input-container layout-align="center center">
-              <label>Story ID</label>
-              <input type="text" ng-model="storyId" ng-model="searchQueries[$index]">
-            </md-input-container>
-            <md-button ng-click="loadStory()">Get Story</md-button>
+            <h3>Choose Submission</h3>
+
+            <a class="link" href ng-repeat="submission in filteredSubmissions track by $index"
+              ng-click="getPostings(submission)">
+              {{submission.title}}
+            </a>
+
+
             <p ng-show="postings.length>0">
               {{postings.length}} Postings loaded
             </p>
@@ -25,15 +27,25 @@
               <input type="text" ng-model="searchQueries[$index]" ng-model="searchQueries[$index]">
             </md-input-container>
 
-            <md-button ng-click="searchQueries.push('')">Add query</md-button>
-            <md-button ng-click="filterPostings()">Apply Filters</md-button>
+            <md-button ng-click="searchQueries.push('')">Add</md-button>
+            <md-button ng-click="filterPostings()">Apply</md-button>
 
+          </div>
         </div>
-
+      </md-content>
   </md-sidenav>
-    <div class="postings">
-      <div class="posting" ng-repeat="posting in filteredPostings">
-        <div ng-bind-html="posting.htmlText"></div>
+
+  <md-content>
+    <div flex class="postings">
+      <div flex layout="column" layout-align="center center">
+        <md-button ng-show="$mdMedia('max-width: 500px')" ng-click="openLeftMenu()">
+          Open menu to get started
+        </md-button>
+        <div class="posting md-whiteframe-z1" ng-repeat="posting in filteredPostings">
+          <div ng-bind-html="posting.htmlText"></div>
+        </div>
       </div>
     </div>
+  </md-content>
+
 </div>
