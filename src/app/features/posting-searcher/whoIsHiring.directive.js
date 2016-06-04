@@ -1,14 +1,18 @@
 function whoIsHiring(HNApi) {
 	return {
 		restrict: 'E',
-		controller: ['$scope', '$sce', '$filter', '$mdSidenav', '$mdMedia',
-		function($scope, $sce, $filter, $mdSidenav, $mdMedia){
+		controller: ['$scope', '$sce', '$filter', '$timeout', '$mdSidenav', '$mdMedia',
+		function($scope, $sce, $filter, $timeout, $mdSidenav, $mdMedia){
 			var ctrl =  this;
 
 			$scope.$mdMedia = $mdMedia;
 
-			$scope.openLeftMenu = function() {
+			$scope.toggleLeftMenu = function() {
 		    $mdSidenav('left').toggle();
+		  };
+
+			$scope.openLeftMenu = function() {
+		    $mdSidenav('left').open();
 		  };
 
 			var submissionLimit = 12;
@@ -58,6 +62,8 @@ function whoIsHiring(HNApi) {
 			};
 
 			getUserSubmissions();
+
+			$timeout($scope.openLeftMenu, 500);
 
   	}],
 		controllerAs: 'hiringCtrl',

@@ -1,8 +1,11 @@
-<md-toolbar>
-    <h2 class="thin">WhoIsHiring's Job Postings:</h2>
+<md-toolbar layout="row" layout-align="start center">
+    <md-button class="md-icon-button" aria-label="Menu" ng-show="$mdMedia('max-width: 600px')" ng-click="toggleLeftMenu()">
+          <i class="material-icons">menu</i>
+    </md-button>
+    <h2 class="thin">WhoIsHiring's Postings:</h2>
 </md-toolbar>
 <div flex layout="row">
-  <md-sidenav md-component-id="left" class="md-whiteframe-z1" md-is-locked-open="$mdMedia('min-width: 500px')">
+  <md-sidenav md-component-id="left" class="md-whiteframe-z1" md-is-locked-open="$mdMedia('min-width: 600px')">
     <md-content>
         <div class="whois-controls" layout="column" layout-align="center center" flex>
 
@@ -38,9 +41,6 @@
   <md-content>
     <div flex class="postings">
       <div flex layout="column" layout-align="center center">
-        <md-button ng-show="$mdMedia('max-width: 500px')" ng-click="openLeftMenu()">
-          Open menu to get started
-        </md-button>
         <div class="posting md-whiteframe-z1" ng-repeat="posting in filteredPostings">
           <div ng-bind-html="posting.htmlText"></div>
         </div>
